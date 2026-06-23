@@ -4,8 +4,6 @@ name: android-learn
 
 description: Teach an Android/Kotlin programming concept with deep explanation, real code examples, and exercises built for mastery — not just familiarity.
 
-argument-hint: "What Android/Kotlin topic would you like to master?"
-
 \---
 
 
@@ -384,17 +382,115 @@ A concrete, numbered task the learner follows to build a small working feature i
 
 
 
-\#### 8d. Bonus / Concept-Specific Exercise (optional, include when the topic warrants it)
+\#### 8d. Trace \& Prove + Concept-Specific Exercise (required)
 
 
 
-Some concepts benefit from an additional exercise type:
+This section has two parts: \*\*Trace \& Prove\*\* (always required) and a \*\*Concept-Specific Exercise\*\* (optional — include when the topic warrants it).
+
+
+
+\---
+
+
+
+\##### Trace \& Prove (always required)
+
+
+
+The learner instruments real Android code with `Log` statements to \*empirically verify\* a claim made in this lesson — moving from "I read it" to "I saw it myself."
+
+
+
+Structure every Trace \& Prove in this exact order:
+
+
+
+\*\*1. The Claim\*\*
+
+State the theory being tested as a single bold assertion.
+
+> \_Example: "A `StateFlow` collector always receives the current value immediately upon subscription, even if that value was emitted before the collector started."\_
+
+
+
+\*\*2. The Setup\*\*
+
+A minimal runnable code stub (ViewModel + Composable, or Activity) with `// 🔍 ADD LOG HERE` markers at the exact lines where the learner inserts `Log.d()` calls.
+
+\- Tag convention: `"TraceProve"` — consistent across all lessons, easy to filter
+
+\- Logcat filter to show the learner: `tag:TraceProve`
+
+\- Keep the setup under 30 lines; provide enough surrounding context to compile and run
+
+\- Every log line must carry context — thread name, value, and a short label:
+
+&#x20; ```kotlin
+
+&#x20; Log.d("TraceProve", "thread=${Thread.currentThread().name} | value=$value")
+
+&#x20; ```
+
+\- For pure Kotlin / non-Android topics: `println()` in Kotlin Playground is acceptable as a substitute; clearly note this in the exercise
+
+
+
+\*\*3. Scenario A — Run \& Observe\*\*
+
+\- State the action: \_"Launch the app and navigate to HomeScreen"\_
+
+\- Show the \*\*expected Logcat output\*\* inside a `<details>` toggle — the learner forms a hypothesis \*before\* revealing it
+
+\- Ask: \_"Does this match what you expected? Why does the output look this way?"\_
+
+
+
+\*\*4. Scenario B — The Contrasting Case\*\*
+
+\- Change one condition (different dispatcher, rotate the device, collect before/after emission, etc.) to surface a nuance or edge case
+
+\- Show expected output again inside a `<details>` toggle
+
+\- Ask: \_"What changed? What does that tell you about the concept?"\_
+
+
+
+\*\*5. Explain It\*\*
+
+A written reflection prompt the learner answers in their own words:
+
+> \_"In 2–3 sentences, explain what the Logcat output proves about how `StateFlow` behaves with late collectors."\_
+
+
+
+Rules:
+
+\- The Claim must be \*\*directly verifiable\*\* from Logcat — no indirect inference
+
+\- Always include one Scenario that challenges an assumption the learner likely formed from the lesson text
+
+\- Never use `System.out.println()` in Android context — always `Log.d()` or `Log.i()` with the `"TraceProve"` tag
+
+\- Hide expected output in a `<details>` toggle so the learner must predict before revealing
+
+
+
+\---
+
+
+
+\##### Concept-Specific Exercise (optional — include when the topic warrants it)
+
+
+
+Some concepts benefit from an additional exercise beyond the core set:
 
 \- \*\*Prediction exercise\*\*: Show a snippet and ask "What will this print / what will happen?" — builds understanding of execution order, lifecycle, etc.
 
 \- \*\*Refactor exercise\*\*: Show Java-style or verbose Kotlin code; ask the learner to rewrite it idiomatically.
 
-\- \*\*Debugging exercise\*\*: A screen recording or logcat output with a bug; the learner diagnoses the cause.
+\- \*\*Debugging exercise\*\*: A Logcat output or broken snippet with a bug; the learner diagnoses and fixes the cause.
 
 
 
