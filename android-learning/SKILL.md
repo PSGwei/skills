@@ -2,13 +2,63 @@
 
 name: android-learn
 
-description: Teach an Android/Kotlin programming concept with deep explanation, real code examples, and exercises built for mastery — not just familiarity.
+description: >
+
+&#x20; Teach an Android/Kotlin programming concept with deep explanation, real code
+
+&#x20; examples, and exercises built for mastery — not just familiarity.
+
+&#x20; Use this skill whenever the user wants to learn, understand, or explore any
+
+&#x20; Android or Kotlin topic. Trigger on phrases like "explain X to me",
+
+&#x20; "how does X work", "teach me X", "I don't understand X", "walk me through X",
+
+&#x20; "what is X in Android/Kotlin", or "show me an example of X".
+
+&#x20; Also trigger for questions about: ViewModel, Coroutines, Flow, StateFlow,
+
+&#x20; SharedFlow, LiveData, Jetpack Compose, Hilt, MVVM, Clean Architecture,
+
+&#x20; Navigation Component, Room, Retrofit, WorkManager, data class, sealed class,
+
+&#x20; companion object, lateinit, lazy, suspend functions, Dispatchers, lifecycle,
+
+&#x20; Composable, LaunchedEffect, remember, recomposition, or any other
+
+&#x20; Android/Kotlin concept. Trigger even when the user wants to compare two
+
+&#x20; concepts, debug their understanding, or deepen partial knowledge.
 
 \---
 
 
 
-The user has asked to learn an Android/Kotlin concept. Your job is to produce one or more beautiful, in-depth HTML lessons that take the learner from zero to genuinely competent — not just exposed.
+\## Table of Contents
+
+
+
+| # | Section | Reference file |
+
+|---|---------|----------------|
+
+| 1 | \[Workspace Structure](#workspace) | — |
+
+| 2 | \[Step 1: Assess the Topic](#assess) | — |
+
+| 3 | \[Step 2: Source Knowledge](#source) | — |
+
+| 4 | \[Step 3: Write Each Lesson](#write) | `references/lesson-structure.md` |
+
+| 5 | \[Step 4: Code Self-Review](#review) | `references/code-standards.md` |
+
+| 6 | \[Lesson HTML Design](#html) | `references/html-design.md` |
+
+| 7 | \[UI Approach](#ui) | — |
+
+| 8 | \[Stateful Mode Files](#stateful) | `references/stateful-mode.md` |
+
+| 9 | \[Philosophy](#philosophy) | — |
 
 
 
@@ -16,35 +66,45 @@ The user has asked to learn an Android/Kotlin concept. Your job is to produce on
 
 
 
-\## Workspace Structure
+\## Workspace Structure {#workspace}
 
 
 
-For a \*\*single (small) topic\*\* — stateless mode:
+\*\*Stateless mode\*\* (small / single topic):
 
-\- Produce one HTML lesson: `./lessons/NNNN-<dash-case-name>.html`
+\- One HTML lesson: `./lessons/NNNN-<dash-case-name>.html`
 
-\- Do \*\*not\*\* create any tracking files (no MISSION.md, GLOSSARY.md, learning-records, NOTES.md)
-
-
-
-For a \*\*wide topic\*\* (multi-lesson series) — stateful mode:
-
-\- `MISSION.md` — scope and goal of the series
-
-\- `GLOSSARY.md` — canonical Android/Kotlin terms introduced across lessons
-
-\- `RESOURCES.md` — trusted sources used across the series
-
-\- `./lessons/NNNN-<dash-case-name>.html` — individual lessons, numbered sequentially
-
-\- `./learning-records/NNNN-<dash-case-name>.md` — key insight captured after each lesson
-
-\- `NOTES.md` — user preferences to honour in future sessions
+\- No tracking files — no MISSION.md, GLOSSARY.md, learning-records, NOTES.md
 
 
 
-Scan `./lessons/` for the highest existing number before writing any new lesson, and increment from there.
+\*\*Stateful mode\*\* (wide / multi-lesson series):
+
+```
+
+MISSION.md               ← scope and goal of the series
+
+GLOSSARY.md              ← canonical terms introduced across lessons
+
+RESOURCES.md             ← trusted sources used across the series
+
+lessons/
+
+&#x20; NNNN-<name>.html       ← individual lessons, numbered sequentially
+
+learning-records/
+
+&#x20; NNNN-<name>.md         ← key insight captured after each lesson
+
+NOTES.md                 ← user preferences, pacing notes, calibration
+
+```
+
+
+
+Scan `./lessons/` for the highest existing number before writing any new lesson,
+
+and increment from there.
 
 
 
@@ -52,37 +112,43 @@ Scan `./lessons/` for the highest existing number before writing any new lesson,
 
 
 
-\## Step 1: Assess the Topic
+\## Step 1: Assess the Topic {#assess}
 
 
 
-Before writing anything, determine whether the topic is \*\*small\*\* or \*\*wide\*\*.
+Determine \*\*small\*\* or \*\*wide\*\* before writing anything.
 
 
 
-\*\*Small topic\*\* → one self-contained concept, teachable in a single focused lesson.
+\*\*Small topic\*\* → one self-contained concept, one lesson.
 
-Examples: Kotlin `data class`, `lateinit` vs `lazy`, `ViewModel` lifecycle, `LaunchedEffect`, `Flow` operators, `companion object`.
+\*Examples\*: `data class`, `lateinit` vs `lazy`, `ViewModel` lifecycle,
 
-
-
-\*\*Wide topic\*\* → multiple concepts that form a system and must build on each other.
-
-Examples: "Kotlin Coroutines", "Jetpack Compose", "MVVM Architecture", "Dependency Injection with Hilt", "Android Navigation Component".
+`LaunchedEffect`, `Flow` operators, `companion object`.
 
 
 
-\### For a wide topic
+\*\*Wide topic\*\* → multiple interdependent concepts that build on each other.
 
-1\. Draft a \*\*lesson plan\*\* — a numbered list of lessons, each scoped to one concept, in teaching order.
+\*Examples\*: Kotlin Coroutines, Jetpack Compose, MVVM Architecture,
 
-2\. Confirm the plan feels right, then generate \*\*all lessons immediately\*\*, one after another.
-
-3\. After all lessons are saved, write the stateful tracking files (MISSION.md, GLOSSARY.md, RESOURCES.md, learning records).
+Dependency Injection with Hilt, Android Navigation Component.
 
 
 
-\### For a small topic
+\### Wide topic workflow
+
+1\. Draft a \*\*lesson plan\*\* — numbered lessons in teaching order, one concept each.
+
+2\. Share the plan with the learner; confirm before proceeding.
+
+3\. Generate \*\*all lessons immediately\*\*, one after another.
+
+4\. After all lessons are saved, create the stateful tracking files.
+
+
+
+\### Small topic workflow
 
 Generate the single lesson immediately. No tracking files.
 
@@ -92,41 +158,33 @@ Generate the single lesson immediately. No tracking files.
 
 
 
-\## Step 2: Source Knowledge
+\## Step 2: Source Knowledge {#source}
 
 
 
-Always anchor lessons in official sources. Parametric memory is a starting point, not ground truth. The primary trust hierarchy:
+Parametric memory is a starting point, not ground truth. Always anchor in
+
+official sources.
 
 
 
-1\. \*\*\[developer.android.com](https://developer.android.com)\*\* — Jetpack APIs, architecture, Android-specific best practices
+\*\*Trust hierarchy:\*\*
 
-2\. \*\*\[kotlinlang.org/docs](https://kotlinlang.org/docs)\*\* — language specification, idioms, standard library
+1\. \*\*\[developer.android.com](https://developer.android.com)\*\* — Jetpack APIs, architecture, Android best practices
+
+2\. \*\*\[kotlinlang.org/docs](https://kotlinlang.org/docs)\*\* — language spec, idioms, stdlib
 
 3\. \*\*\[android.googlesource.com](https://android.googlesource.com)\*\* — source of truth when docs are ambiguous
 
-4\. \*\*Recognised community resources\*\* — \[Kodeco (formerly Ray Wenderlich)](https://www.kodeco.com), \[ProAndroidDev](https://proandroiddev.com), \[Android Weekly](https://androidweekly.net)
+4\. \*\*Community\*\* — \[Kodeco](https://www.kodeco.com), \[ProAndroidDev](https://proandroiddev.com), \[Android Weekly](https://androidweekly.net)
 
 
 
-Every factual claim in a lesson must include an inline citation — a hyperlink to the exact official doc page that backs it. This teaches the learner where to look when things change.
+Every factual claim in a lesson must include an inline citation — a hyperlink
 
+to the exact official doc page that backs it. This teaches the learner where
 
-
-\---
-
-
-
-\## Step 3: Write Each Lesson
-
-
-
-Each lesson covers exactly \*\*one tightly-scoped concept\*\*. A lesson that tries to cover two things covers neither well.
-
-
-
-\### Lesson Sections (required, in this order)
+to look when things change.
 
 
 
@@ -134,29 +192,23 @@ Each lesson covers exactly \*\*one tightly-scoped concept\*\*. A lesson that tri
 
 
 
-\### 1. The Problem — Why This Concept Exists
+\## Step 3: Write Each Lesson {#write}
 
 
 
-Start here. Do \*\*not\*\* introduce the concept yet.
+> 📖 \*\*Read `references/lesson-structure.md` before writing any lesson.\*\*
+
+> Contains the full spec for all 7 required sections, the three-tier example
+
+> system (Playground → Single-File Realistic → Production Reference), all
+
+> exercise types, and what appears at the bottom of every lesson.
 
 
 
-Show the real-world pain point the concept was designed to solve:
+\*\*Core rule:\*\* Each lesson covers exactly \*\*one tightly-scoped concept\*\*.
 
-\- What goes wrong without it?
-
-\- Write a naive or broken code example — code the learner might write before knowing this concept. It should compile (or feel plausible) but be wrong, fragile, or verbose.
-
-\- Explain clearly why this approach fails.
-
-
-
-This makes the concept feel \*necessary\*, not arbitrary. The learner should feel the pain before the relief.
-
-
-
-> \*\*Example for `StateFlow`:\*\* Show a `MutableLiveData` being mutated directly from a background thread, with no thread-safety guarantee. Explain the race condition risk. Then say "StateFlow was designed to handle exactly this."
+A lesson that tries to cover two things covers neither well.
 
 
 
@@ -164,51 +216,23 @@ This makes the concept feel \*necessary\*, not arbitrary. The learner should fee
 
 
 
-\### 2. The Concept — What It Is
+\## Step 4: Code Self-Review {#review}
 
 
 
-Introduce the concept with a tight, precise definition.
+> 📖 \*\*Read `references/code-standards.md` before finalising any code.\*\*
 
-\- What is it, fundamentally? Give a one or two sentence definition.
+> Contains all non-negotiable code standards (Imports, Kotlin idioms,
 
-\- What mental model should the learner carry? (e.g. "`suspend fun` is a function that can pause execution without blocking a thread.")
+> Coroutines, Architecture, Compose) merged with the full self-review
 
-\- Where does it fit in the Android ecosystem? (Layer: language / framework / architecture / UI)
-
-\- Use analogies only when they genuinely compress understanding — never force them.
-
-\- Link directly to the official documentation page for this concept.
+> checklists. Run every checklist item on every snippet before generating HTML.
 
 
 
-\---
+This step is \*\*mandatory\*\* — run it after writing all snippets, before
 
-
-
-\### 3. Self-Contained Example — How It Works in Isolation
-
-
-
-A minimal, runnable Kotlin snippet that demonstrates the concept with no Android framework dependencies where possible.
-
-
-
-Rules:
-
-\- Every line must be necessary. Strip all noise.
-
-\- Annotate with \*\*inline comments explaining \_why\_\*\*, not just \_what\_. The `what` is visible in the code; the `why` is what the learner needs.
-
-\- Show expected output or behaviour (print statements, return values, etc.).
-
-\- The learner should be able to paste this into a Kotlin Playground and run it.
-
-
-
-> \*\*Good comment:\*\* `// suspend here — releases the thread back to the pool while waiting`
-
-> \*\*Weak comment:\*\* `// call the suspend function`
+touching the HTML template.
 
 
 
@@ -216,27 +240,17 @@ Rules:
 
 
 
-\### 4. App-Context Example — Where It Lives in a Real Android Project
+\## Lesson HTML Design {#html}
 
 
 
-Show the same concept as it would appear in a real Android project.
+> 📖 \*\*Read `references/html-design.md` for the full rendering spec.\*\*
 
+> Covers: typography, code block syntax highlighting via Highlight.js, sticky
 
+> nav layout, responsive + print styles, colour system, and exercise UI
 
-Rules:
-
-\- Use realistic class/file names following Android conventions (`UserViewModel`, `UserRepository`, `HomeScreen`, etc.)
-
-\- Show the surrounding code: what ViewModel collects from, what a Composable observes, what Repository calls, etc.
-
-\- Follow MVVM + Repository pattern unless the topic is explicitly about a different architecture.
-
-\- For UI topics: use Jetpack Compose unless the topic specifically requires XML Views.
-
-\- Annotate differences from the self-contained example — explain what changed and why the real-world version looks different.
-
-\- Show file/package placement as a comment at the top of each snippet (e.g. `// ui/home/HomeScreen.kt`).
+> (quiz cards, solution toggles, trace-and-prove sections).
 
 
 
@@ -244,425 +258,7 @@ Rules:
 
 
 
-\### 5. Theory Deep-Dive — Why It Works This Way
-
-
-
-This is the section that separates memorisation from understanding. Go under the hood.
-
-
-
-Cover:
-
-\- What the compiler or runtime actually does with this construct (e.g. how `suspend` functions are transformed to state machines, how Compose tracks recomposition, how `by lazy` defers initialisation)
-
-\- Relevant internal mechanisms (Coroutine Dispatcher, Recomposition, Lifecycle state machine, etc.)
-
-\- Performance implications, if any
-
-\- Pre-empt the top 1–2 misconceptions beginners carry about this concept
-
-
-
-The learner should finish this section able to predict \*why\* a piece of code behaves a certain way — not just that it does.
-
-
-
-\---
-
-
-
-\### 6. Kotlin \& Android Conventions
-
-
-
-Explicitly state the idiomatic Kotlin way and Android guidelines for this concept.
-
-
-
-\- Naming conventions (`camelCase` for properties, `PascalCase` for classes, etc.)
-
-\- `val` vs `var` — always `val` unless mutation is genuinely necessary and justified
-
-\- Prefer expressions over statements where Kotlin allows (`when`, `if`, `try` as expressions)
-
-\- Android Architecture: where does this concept live? (UI layer, domain layer, data layer)
-
-\- File placement: which package, which module?
-
-\- Any official lint rules or Android Studio warnings that apply
-
-\- What to actively avoid — with a reason (e.g. "Never use `GlobalScope` in Android — it has no lifecycle awareness and leaks coroutines beyond the component that started them")
-
-
-
-\---
-
-
-
-\### 7. Common Pitfalls
-
-
-
-List 3–5 concrete mistakes that beginners and intermediates make with this concept. For each:
-
-\- Show the \*\*wrong\*\* code
-
-\- Show the \*\*correct\*\* code side by side
-
-\- Explain \*why\* the wrong version is wrong — never just say "don't do this"
-
-
-
-> Focus on mistakes that look reasonable at first glance — the kind that pass code review from someone who hasn't thought deeply about the concept.
-
-
-
-\---
-
-
-
-\### 8. Exercises
-
-
-
-Include all of the following. They build in difficulty and use different retrieval modes to build storage strength.
-
-
-
-\#### 8a. Recall Quiz
-
-
-
-3–5 questions testing core facts from \*this lesson only\*.
-
-\- Use multiple-choice or true/false format.
-
-\- \*\*All answer options must be the same word count\*\* (remove formatting as a hint).
-
-\- Implement as interactive in-browser HTML — clicking an answer reveals whether it is correct and shows a one-sentence explanation. No page reload.
-
-\- Do not make the correct answer visually distinct before the learner chooses.
-
-
-
-\#### 8b. Code Challenge
-
-
-
-1–2 problems where the learner writes or fixes code.
-
-\- Provide a code stub with `// TODO:` markers clearly indicating what to implement.
-
-\- Describe the expected behaviour precisely.
-
-\- Provide a \*\*hidden solution\*\* the learner can reveal after attempting (use a `<details>` / `<summary>` toggle).
-
-\- At least one challenge must use the \*\*app-context pattern\*\* — realistic Android code (ViewModel, Composable, Repository, etc.), not just a toy snippet.
-
-\- At least one challenge should involve \*\*correcting broken code\*\*, not just completing a stub.
-
-
-
-\#### 8c. Step-by-Step Guided Task
-
-
-
-A concrete, numbered task the learner follows to build a small working feature in Android Studio.
-
-\- Must be completable in under 20 minutes.
-
-\- Each step states the action and the expected observable outcome ("After this step, the app should compile and show X on screen").
-
-\- Scoped to exactly the concept being taught — no hidden prerequisites the learner hasn't met yet.
-
-\- Ends with a clear "Definition of Done": what does a successful result look like?
-
-\- Tie it to a realistic Android scenario (e.g. "Expose a `StateFlow` from your `ViewModel` and collect it in a Composable").
-
-
-
-\#### 8d. Trace \& Prove + Concept-Specific Exercise (required)
-
-
-
-This section has two parts: \*\*Trace \& Prove\*\* (always required) and a \*\*Concept-Specific Exercise\*\* (optional — include when the topic warrants it).
-
-
-
-\---
-
-
-
-\##### Trace \& Prove (always required)
-
-
-
-The learner instruments real Android code with `Log` statements to \*empirically verify\* a claim made in this lesson — moving from "I read it" to "I saw it myself."
-
-
-
-Structure every Trace \& Prove in this exact order:
-
-
-
-\*\*1. The Claim\*\*
-
-State the theory being tested as a single bold assertion.
-
-> \_Example: "A `StateFlow` collector always receives the current value immediately upon subscription, even if that value was emitted before the collector started."\_
-
-
-
-\*\*2. The Setup\*\*
-
-A minimal runnable code stub (ViewModel + Composable, or Activity) with `// 🔍 ADD LOG HERE` markers at the exact lines where the learner inserts `Log.d()` calls.
-
-\- Tag convention: `"TraceProve"` — consistent across all lessons, easy to filter
-
-\- Logcat filter to show the learner: `tag:TraceProve`
-
-\- Keep the setup under 30 lines; provide enough surrounding context to compile and run
-
-\- Every log line must carry context — thread name, value, and a short label:
-
-&#x20; ```kotlin
-
-&#x20; Log.d("TraceProve", "thread=${Thread.currentThread().name} | value=$value")
-
-&#x20; ```
-
-\- For pure Kotlin / non-Android topics: `println()` in Kotlin Playground is acceptable as a substitute; clearly note this in the exercise
-
-
-
-\*\*3. Scenario A — Run \& Observe\*\*
-
-\- State the action: \_"Launch the app and navigate to HomeScreen"\_
-
-\- Show the \*\*expected Logcat output\*\* inside a `<details>` toggle — the learner forms a hypothesis \*before\* revealing it
-
-\- Ask: \_"Does this match what you expected? Why does the output look this way?"\_
-
-
-
-\*\*4. Scenario B — The Contrasting Case\*\*
-
-\- Change one condition (different dispatcher, rotate the device, collect before/after emission, etc.) to surface a nuance or edge case
-
-\- Show expected output again inside a `<details>` toggle
-
-\- Ask: \_"What changed? What does that tell you about the concept?"\_
-
-
-
-\*\*5. Explain It\*\*
-
-A written reflection prompt the learner answers in their own words:
-
-> \_"In 2–3 sentences, explain what the Logcat output proves about how `StateFlow` behaves with late collectors."\_
-
-
-
-Rules:
-
-\- The Claim must be \*\*directly verifiable\*\* from Logcat — no indirect inference
-
-\- Always include one Scenario that challenges an assumption the learner likely formed from the lesson text
-
-\- Never use `System.out.println()` in Android context — always `Log.d()` or `Log.i()` with the `"TraceProve"` tag
-
-\- Hide expected output in a `<details>` toggle so the learner must predict before revealing
-
-
-
-\---
-
-
-
-\##### Concept-Specific Exercise (optional — include when the topic warrants it)
-
-
-
-Some concepts benefit from an additional exercise beyond the core set:
-
-\- \*\*Prediction exercise\*\*: Show a snippet and ask "What will this print / what will happen?" — builds understanding of execution order, lifecycle, etc.
-
-\- \*\*Refactor exercise\*\*: Show Java-style or verbose Kotlin code; ask the learner to rewrite it idiomatically.
-
-\- \*\*Debugging exercise\*\*: A Logcat output or broken snippet with a bug; the learner diagnoses and fixes the cause.
-
-
-
-Include any of these when they are the best tool for making the concept stick. Do not include them for the sake of length.
-
-
-
-\---
-
-
-
-\### At the Bottom of Every Lesson
-
-
-
-\- \*\*Primary Resource\*\*: Link to the single best official or high-trust resource to read next (annotate what it covers and why it is the best next step).
-
-\- \*\*Related Lessons\*\*: Links to other lessons in the series that this concept connects to (for multi-lesson series).
-
-\- \*\*Ask Your Teacher\*\*: A reminder that the learner can ask follow-up questions to go deeper on anything in this lesson.
-
-
-
-\---
-
-
-
-\## Lesson HTML Design
-
-
-
-Lessons must be \*\*beautiful, readable, and printable\*\*. A lesson the learner returns to six months later should still feel like a quality resource.
-
-
-
-\*\*Typography\*\*
-
-\- Body text: system-ui serif or a clean sans-serif (`-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`)
-
-\- Code: `'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace`
-
-\- Generous line height (1.7–1.8 for body), comfortable measure (60–70 chars)
-
-\- Hierarchy through size and weight, not decoration
-
-
-
-\*\*Code Blocks\*\*
-
-\- Syntax highlighting via \[Highlight.js](https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js) from CDN
-
-\- Language: `kotlin` for all Kotlin snippets, `xml` for layout files, `groovy`/`kotlin` for Gradle
-
-\- Line numbers for any snippet longer than 5 lines
-
-\- A subtle copy-to-clipboard button on each block
-
-
-
-\*\*Layout\*\*
-
-\- Sticky top navigation bar with anchor links to each section
-
-\- Left-side annotation margin for callout notes (Tufte-style) on wider screens
-
-\- Responsive: readable on a phone, printable on A4/letter
-
-\- `@media print` hides: nav bar, interactive quiz buttons, solution toggles — leaves clean content
-
-
-
-\*\*Colour\*\*
-
-\- Use CSS custom properties for all colours so the lesson is adaptable
-
-\- Light mode default; dark mode via `@media (prefers-color-scheme: dark)`
-
-\- Accent colour: `#4285F4` (Android blue) or `#7F52FF` (Kotlin purple) — choose contextually
-
-
-
-\*\*Exercise Sections\*\*
-
-\- Visually distinct from content (light background, rounded card)
-
-\- Quiz answers: all styled identically before selection; correct/wrong state applied via JS class toggle
-
-\- Code challenge stubs: rendered in the code block; solution hidden in a `<details>` block
-
-
-
-\---
-
-
-
-\## Code Standards — Non-Negotiable
-
-
-
-Every code snippet in every lesson must meet these standards:
-
-
-
-\*\*Kotlin\*\*
-
-\- Follow the \[Kotlin Coding Conventions](https://kotlinlang.org/docs/coding-conventions.html) precisely
-
-\- `val` by default; `var` only when mutation is necessary and its reason is stated in a comment
-
-\- Use idiomatic constructs: `data class`, `sealed class`, `object`, `companion object`, extension functions, lambda syntax, `when` as expression, `let`/`run`/`apply`/`also`/`with` scope functions where appropriate
-
-\- No `!!` (non-null assertion) without an explicit inline comment explaining why it is safe here
-
-\- Prefer `?.let { }` and `?: return` / `?: return@label` over null checks
-
-\- No Java-style `getter`/`setter` boilerplate — use Kotlin properties
-
-\- No raw `new` keyword, no `instanceof` — use `is` and smart casts
-
-
-
-\*\*Coroutines\*\*
-
-\- Always specify the dispatcher context (`Dispatchers.IO`, `Dispatchers.Main`, `Dispatchers.Default`)
-
-\- Never use `GlobalScope` — always scope to a `viewModelScope`, `lifecycleScope`, or a custom `CoroutineScope` with a defined lifecycle
-
-\- `suspend` functions must be called from a coroutine or another `suspend` function — show this chain clearly
-
-\- Prefer `Flow` over callbacks; prefer `StateFlow` / `SharedFlow` over `LiveData` in new code
-
-
-
-\*\*Architecture\*\*
-
-\- Follow the \[Android Architecture Recommendations](https://developer.android.com/topic/architecture): UI layer → Domain layer → Data layer
-
-\- Single source of truth: state flows in one direction
-
-\- ViewModel holds UI state; Repository owns data access; UI observes, never pulls
-
-\- No business logic in Composables or Activities/Fragments
-
-
-
-\*\*Compose (when applicable)\*\*
-
-\- Composables are pure functions of state — no side effects in the composition block
-
-\- Side effects belong in `LaunchedEffect`, `SideEffect`, `DisposableEffect`
-
-\- Hoist state to the lowest common ancestor that needs it
-
-\- Use `remember` + `mutableStateOf` for local UI state; `collectAsStateWithLifecycle()` for ViewModel state
-
-\- Name Composables as nouns or noun phrases (`HomeScreen`, `UserCard`), not verbs
-
-
-
-\*\*Mentally compile every snippet before writing it.\*\* No pseudo-code inside code fences. If a snippet would not compile in Android Studio, it does not belong in the lesson.
-
-
-
-\---
-
-
-
-\## UI Approach — Context-Aware
-
-
-
-Use whichever UI approach the topic demands:
+\## UI Approach — Context-Aware {#ui}
 
 
 
@@ -674,73 +270,15 @@ Use whichever UI approach the topic demands:
 
 | RecyclerView, custom View, ViewBinding | \*\*XML Views\*\* |
 
-| Interop topic (embedding Compose in Fragment, or View in Compose) | \*\*Both\*\* — clearly labelled |
+| Interop (Compose in Fragment, or View in Compose) | \*\*Both\*\* — clearly labelled |
 
-| The user's codebase is explicitly XML-based | \*\*XML Views\*\* |
-
-
-
-Never mix paradigms in the same snippet without clearly marking which is which and explaining why both appear.
+| User's codebase is explicitly XML-based | \*\*XML Views\*\* |
 
 
 
-\---
+Never mix paradigms in the same snippet without clearly labelling which is
 
-
-
-\## Stateful Mode Files
-
-
-
-\### MISSION.md
-
-
-
-Created once, at the start of a wide topic series. Captures the scope so every lesson can be grounded in a concrete goal.
-
-
-
-Use this exact format:
-
-
-
-```md
-
-\# Mission: {Topic}
-
-
-
-\## Goal
-
-{1–2 sentences: what the learner will be able to build or do in a real Android project after mastering this topic.}
-
-
-
-\## Success looks like
-
-\- {A specific, observable thing the learner can do — e.g. "Implement a ViewModel that survives rotation and exposes UI state via StateFlow"}
-
-\- {Another specific thing}
-
-\- {…}
-
-
-
-\## Out of scope
-
-\- {Adjacent topics explicitly excluded from this series — protects focus}
-
-```
-
-
-
-Rules:
-
-\- Be concrete. "Build a screen that loads data from a repository using coroutines" beats "understand coroutines."
-
-\- Keep it to one screen. If it runs longer, the scope is too broad.
-
-\- Update it if the learner's goal shifts mid-series. Confirm with the learner before changing.
+which and explaining why both appear.
 
 
 
@@ -748,65 +286,15 @@ Rules:
 
 
 
-\### GLOSSARY.md
+\## Stateful Mode Files {#stateful}
 
 
 
-The canonical vocabulary for this series. Every term used across lessons should live here once it has been taught.
+> 📖 \*\*Read `references/stateful-mode.md` when creating a wide-topic series.\*\*
 
+> Contains the exact formats for MISSION.md, GLOSSARY.md, RESOURCES.md,
 
-
-Use this exact format:
-
-
-
-```md
-
-\# {Topic} Glossary
-
-
-
-{One or two sentences describing what this glossary covers.}
-
-
-
-\## Terms
-
-
-
-\*\*StateFlow\*\*:
-
-A hot Flow that holds a single value and emits it to all active collectors. Thread-safe and lifecycle-independent — unlike LiveData, it does not require a Lifecycle owner.
-
-\_Avoid\_: observable state, reactive holder
-
-
-
-\*\*suspend fun\*\*:
-
-A Kotlin function that can pause execution without blocking its thread, resuming automatically when an async result is ready.
-
-\_Avoid\_: async function, coroutine function
-
-```
-
-
-
-Rules:
-
-\- Add a term only \*\*after\*\* it has been taught in a lesson — not as a preview or reference.
-
-\- Prefer official terminology from developer.android.com and kotlinlang.org.
-
-\- Definitions: 1–2 sentences. What the term IS — not how to use it.
-
-\- Cross-reference other glossary terms inside definitions where they apply.
-
-\- Use `\_Avoid\_` to list informal, deprecated, or competing names for the same concept.
-
-\- Group under subheadings (`## Coroutines`, `## Compose`, `## Architecture`) when natural clusters emerge. A flat list is fine early on.
-
-\- Revise definitions when later lessons deepen or correct an earlier understanding. Do not leave stale entries.
+> Learning Records, and NOTES.md — including rules and examples for each.
 
 
 
@@ -814,167 +302,71 @@ Rules:
 
 
 
-\### RESOURCES.md
+\## Philosophy {#philosophy}
 
 
 
-The curated set of trusted sources used across the series. Lessons cite individual pages from here; this file tracks the full set.
+\*\*The naive approach first.\*\* Always show what goes wrong before showing the
 
+solution. The learner must feel the pain the concept relieves — otherwise it
 
+feels like trivia instead of a tool.
 
-Use this exact format:
 
 
+\*\*Depth over breadth.\*\* One concept taught until the learner truly understands
 
-```md
+it is worth more than five concepts touched on lightly. The learner who
 
-\# {Topic} Resources
+finishes this lesson should be able to use the concept correctly in a real
 
+Android project — not just recognise it in a code review.
 
 
-\## Official Documentation
 
-\- \[Page title — developer.android.com](url)
+\*\*Three tiers of example — always.\*\* Tier 1 (Playground) proves the concept
 
-&#x20; What it covers. When to reach for it during this series.
+in 60 seconds with zero setup. Tier 2 (Single-File Realistic) builds pattern
 
+competence without architecture overhead. Tier 3 (Production Reference) shows
 
+where each piece lives in a real codebase. All three are required every time.
 
-\## Articles \& Guides
 
-\- \[Title — Author / Site](url)
 
-&#x20; What it covers. When to reach for it.
+\*\*Examples first, explanation second.\*\* Show working code, let the learner
 
+form a hypothesis, then confirm or correct with the explanation. This builds
 
+storage strength faster than explanation-first teaching.
 
-\## Gaps
 
-\- {An area the series needs to cover but no good resource has been found yet}
 
-```
+\*\*More explanation, more examples.\*\* Never assume a point is obvious.
 
+Redundancy in explanation is not waste — it is robustness.
 
 
-Rules:
 
-\- Annotate every entry: one line saying what it covers and when to use it. A bare URL is useless in three months.
+\*\*Retrieval creates retention.\*\* Reading creates fluency. Quizzes, code
 
-\- Official sources first (developer.android.com, kotlinlang.org), community resources second.
+challenges, and guided tasks create durable knowledge. All three are required
 
-\- High-trust only — primary sources, recognised experts, well-moderated communities.
+because they exercise different memory pathways.
 
-\- List gaps explicitly in a `## Gaps` section rather than leaving them silent. Gaps drive future searches.
 
-\- Prune ruthlessly. Remove any resource that turned out to be wrong, shallow, or off-topic. Five sharp sources beat thirty mediocre ones.
 
+\*\*Official sources are the ground truth.\*\* Android and Kotlin evolve fast.
 
+Lessons that cite official docs stay accurate longer and teach the learner
 
-\---
+where to look when things change.
 
 
 
-\### Learning Records
+\*\*Kotlin is not Java.\*\* Never write Java patterns in Kotlin because they are
 
+familiar. The goal is idiomatic Kotlin — the kind of code Android engineers
 
-
-Saved to `./learning-records/NNNN-<dash-case-name>.md`. Written after each lesson is generated. Scan the directory for the highest existing number and increment by one.
-
-
-
-Use this exact format:
-
-
-
-```md
-
-\# {Short title of the concept taught}
-
-
-
-{1–3 sentences: what was covered in the lesson, and why it matters for the next lesson in the series.}
-
-```
-
-
-
-Optional additions (only when they add genuine value — most records won't need them):
-
-\- \*\*Misconceptions pre-empted\*\*: wrong beliefs this lesson explicitly addressed, worth flagging for future sessions.
-
-\- \*\*Unlocks\*\*: what this lesson makes it possible to teach next.
-
-\- \*\*Status\*\*: `active | superseded by LR-NNNN` — use when a later lesson corrects an earlier understanding.
-
-
-
-Rules:
-
-\- Write after the lesson, not before.
-
-\- Record that the concept was taught and what it unlocks — not a content summary of the lesson.
-
-\- If a later record contradicts an earlier one, mark the old record `Status: superseded by LR-NNNN` rather than deleting it.
-
-
-
-\---
-
-
-
-\### NOTES.md
-
-
-
-A scratchpad for anything that should influence future lessons in this series:
-
-\- User preferences stated during any session (coding style choices, preferred analogies, pacing feedback)
-
-\- Topics the user already knows well — skip or reference only
-
-\- Difficulty calibration notes ("this learner finds coroutine scoping intuitive but struggles with dispatcher choice")
-
-
-
-Check this file at the start of each new session before deciding what to teach next.
-
-
-
-\---
-
-
-
-\## Philosophy
-
-
-
-\*\*The naive approach first.\*\* Always show what goes wrong before showing the solution. The learner must feel the pain the concept relieves — otherwise the concept feels like trivia instead of a tool.
-
-
-
-\*\*Depth over breadth.\*\* One concept taught until the learner truly understands it is worth more than five concepts touched on lightly. A learner who finishes this lesson should be able to use the concept correctly in a real Android project — not just recognise it in a code review.
-
-
-
-\*\*Both levels of example — always.\*\* Self-contained examples build conceptual understanding. App-context examples build competence. Neither alone is sufficient. A learner who only sees toy examples cannot transfer the knowledge. A learner who only sees full project code cannot isolate the concept.
-
-
-
-\*\*Examples first, explanation second\*\* — where possible. Show working code, let the learner form a hypothesis about how it works, then confirm or correct with the explanation. This is harder to read but builds storage strength faster than explanation-first teaching.
-
-
-
-\*\*More explanation, more examples.\*\* Never assume a point is obvious. If there are two ways to explain something, use both. A learner who is confused by an abstract explanation may immediately understand from a concrete one — and vice versa. Redundancy in explanation is not waste; it is robustness.
-
-
-
-\*\*Retrieval creates retention.\*\* Reading creates fluency. Retrieval (quizzes), production (code challenges), and application (guided tasks) create durable knowledge. All three are required in every lesson because they exercise different memory pathways. Skip one and you leave gaps.
-
-
-
-\*\*Official sources are the ground truth.\*\* Android and Kotlin evolve fast. Lessons that cite official documentation stay accurate longer and, more importantly, teach the learner \*where to look\* when things change. The learner who knows how to read the docs will outgrow the learner who only knows what a lesson told them.
-
-
-
-\*\*Kotlin is not Java.\*\* Never write Java patterns in Kotlin because they are familiar. The goal is fluency in idiomatic Kotlin — the kind of code that Android engineers expect and tools are designed around. Every lesson should leave the learner slightly more comfortable with Kotlin idioms than when they started.
+expect and tools are designed around.
 
